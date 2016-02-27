@@ -1,0 +1,56 @@
+<body>
+	<script type="text/javascript">
+		var text =[
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ", 
+			"do eiusmod tempor incididunt ut labore et dolore magna ",
+			"aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+			"Duis aute irure dolor in reprehenderit in voluptate velit ",
+			"ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+		]
+			
+		var textDisplayed = "";
+		var currentLine = 0;
+		
+		var textInterval = window.setInterval(displayText, 300);
+		
+		function displayText(){
+			if(currentLine == (text.length-1)){
+				clearInterval(textInterval);
+			}
+			textDisplayed += text[currentLine];
+			currentLine++;
+			document.getElementById("textBox").innerHTML = textDisplayed;
+		}
+		
+	</script>
+	
+	<p id="textBox" style=
+	"font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;color: #00e64d;text-shadow: 0 0 0.2em #1aff66;font-size:15px;">
+	</p>
+	
+</body>

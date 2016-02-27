@@ -23,17 +23,24 @@ body{
 }
 
 .menuButt{	
+	margin-left:auto;
+	margin-right:auto;
 	background-color: black;
+	outline: none;
+    border-color: #00e64d;
+    box-shadow: 0 0 10px #1aff66;
+    width:30%;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+}
+
+#menuContainer a{
+	text-decoration:none;
 	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
 	color: #00e64d;
 	text-shadow: 0 0 0.2em #1aff66;
 	font-size:24px;
-	outline: none;
-    border-color: #00e64d;
-    box-shadow: 0 0 10px #1aff66;
-    
-    width:30%;
-    height:50px;
 }
 
 .menuButt:hover{
