@@ -1,0 +1,64 @@
+body{
+	background-color:black;
+}
+
+table,th ,td{
+	width:100%;
+	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	color: #00e64d;
+	text-shadow: 0 0 0.2em #1aff66;
+	font-size:36px;
+	outline: none;
+    border-color: #00e64d;
+    box-shadow: 0px 0px 10px #1aff66;
+}
+
+td{
+	font-size:15px;
+	text-align:center;
+}
+
+#screen{	
+	width: 40%;
+	height: 600px;
+	
+	outline: none;
+    border-color: #00e64d;
+    box-shadow: 0 0 10px #1aff66;
+    
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow:auto;
+}
+
+.menuButt{	
+	margin-left:auto;
+	margin-right:auto;
+	background-color: black;
+	outline: none;
+    border-color: #00e64d;
+    box-shadow: 0 0 10px #1aff66;
+    width:30%;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+}
+
+#backLink{
+	text-decoration:none;
+	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	color: #00e64d;
+	text-shadow: 0 0 0.2em #1aff66;
+	font-size:24px;
+}
+
+.menuButt:hover{
+	color: black;
+	background-color: #00e64d;
+}
+
+#backButtonContainer{
+	margin-top:40px;	
+	margin-bottom:40px;
+}
