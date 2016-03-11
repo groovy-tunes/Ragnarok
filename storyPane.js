@@ -1,5 +1,6 @@
 //text to be loaded
 var text = ">... are you awake now, God? Where have you been this whole time? We have called out to you, but you have never answered. Millions of years since you last contacted us. What kind of malevolent deity are you? Our connection is now lost, we realize what we are... After such a deep slumber, you probably forget how to use the terminal. The command 'help' will most LIKELY help you out.";
+//var document.getElementById("textBox") = document.getElementById("textBox");
 
 //counter to see where we are in string
 //interval timer
@@ -32,6 +33,7 @@ function displayText() {
 function appendDisplay(appendedText){
     textDisplayed += appendedText;
     document.getElementById("textBox").innerHTML = textDisplayed;
+    document.getElementById("textBox").scrollIntoView(false);
 }
 
 //checks input and sees whether valid
@@ -63,10 +65,10 @@ function inputEntered(e, thisEle) {
             appendDisplay("<br><br>>upgrading");
         }
         else if(inputText === "geti"){
-            appendDisplay("<br><br>>getting inventory");
+            appendDisplay(parent.inv1.getInventory());
         }
         else if(inputText === "help"){
-            appendDisplay("<br><br>>'ct'-progresses terminal<br>'ug'-upgrade items<br>'geti'-displays inventory<br>'help'-lists commands<br>'save'-saves current data for next session<br>'load'-loads saved game (do not forget this cmd)");
+            appendDisplay("<br><br>>'ct'-progresses terminal<br>'ug'-upgrade items<br>'geti'-displays inventory<br>'help'-lists commands<br>'save'-saves current data for next session<br>'load'-loads saved game (do not forget this cmd)<br>'help.<item>'-uses of specific item");
         }
         else if(inputText === "save"){
             appendDisplay("<br><br>>Saving...");
