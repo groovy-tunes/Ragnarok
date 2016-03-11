@@ -10,6 +10,7 @@ if(parent.isNew)
 else
     var textInterval = false;
 
+//remove this
 var testVar = 420;
 
 //functions like a loop, appending more and more characters to <p> element
@@ -65,11 +66,14 @@ function inputEntered(e, thisEle) {
             appendDisplay("<br><br>>getting inventory");
         }
         else if(inputText === "help"){
-            appendDisplay("<br><br>>'ct'-progresses terminal<br>'ug'-upgrade items<br>'geti'-displays inventory<br>'help'-lists commands<br>'save'-saves current data for next session");
+            appendDisplay("<br><br>>'ct'-progresses terminal<br>'ug'-upgrade items<br>'geti'-displays inventory<br>'help'-lists commands<br>'save'-saves current data for next session<br>'load'-loads saved game (do not forget this cmd)");
         }
         else if(inputText === "save"){
             appendDisplay("<br><br>>Saving...");
             parent.saveGame();
+        }
+        else if(inputText === "load"){
+            parent.loadData();
         }
         else{
             appendDisplay("<br><br>>Command not found, use 'help' command for available commands");
