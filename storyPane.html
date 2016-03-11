@@ -7,26 +7,22 @@
 	<meta name ="viewport" content= "width=device-width, initial-scale=1,
 	minimum-scale=0.5, maximum-scale=2"/>
 	<meta name="author" content = "Jeremy Chinsen"/>
-	<link rel="stylesheet" href="storyPane.css"/>
+	<link rel="stylesheet" href="generalStylesheet.css"/>
+        <script src="storyPane.js"></script>
 </head>
 <body>
-	<div id="screen">
-		<div id="textBody">
-			<p>
-			<iframe id="textFrame" 
-				src="genericText.html"
-				width= "100%"
-				height="450" 
-				frameborder="0">
-			</iframe>
-			</p>
-		</div>
-		
-		<a id="contLink" href="/storyPane.html">
-			<div class="menuButt">
-				Continue
-			</div>
-		</a>
-	</div>
+        <!--
+            a <p> element that displays info of game
+        -->
+        <div id="textContainer">
+            <p id="textBox" style=
+            "font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;color: #00e64d;text-shadow: 0 0 0.2em #1aff66;font-size:15px;">
+            </p>
+        </div>
+        
+        <div id="inputText">
+            <input type="text" value=">" onkeypress="inputEntered(event, this)"/>
+        </div>
+   
 </body>
 </html>

@@ -1,0 +1,92 @@
+body{
+	background-color:black;
+}
+
+#titleText{
+	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	color: #00e64d;
+	text-shadow: 0 0 0.2em #1aff66;
+	text-align: center;
+	font-size:64px;
+}
+
+.menuButt{	
+    margin-left:auto;
+    margin-right:auto;
+    background-color: black;
+    outline: none;
+    border-color: #00e64d;
+    box-shadow: 0 0 10px #1aff66;
+    width:30%;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+    color: #00e64d;
+    font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+}
+
+#menuContainer a{
+	text-decoration:none;
+	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	color: #00e64d;
+	text-shadow: 0 0 0.2em #1aff66;
+	font-size:24px;
+}
+
+.menuButt:hover{
+	color: black;
+	background-color: #00e64d;
+}
+
+#menuContainer{
+	text-align:center;
+	margin:auto;
+}
+
+footer{
+	font-size:10px;
+	font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+	color: #00e64d;
+	text-shadow: 0 0 0.2em #1aff66;
+	text-align: center;
+}
+	
+#header {
+   padding:10px;
+}
+
+#body {
+   padding:10px;
+   padding-bottom:200px;   /* Height of the footer */
+}
+
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:200px;   /* Height of the footer */
+   background:#6cf;
+}
+
+#textContainer {
+    width:100%;
+    overflow-y:auto;
+    height:350px;
+}
+
+#inputText{
+    width:100%;
+    height:200px;   /* Height of the footer */
+    background:black;
+    border:black;
+}
+
+input[type=text]{
+    font-family:'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+    color: #00e64d;
+    text-shadow: 0 0 0.2em #1aff66;
+    background:black;
+    /*change the width of box
+    width:80%;
+    */
+}

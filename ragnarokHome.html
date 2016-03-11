@@ -7,12 +7,9 @@
 	<meta name ="viewport" content= "width=device-width, initial-scale=1,
 	minimum-scale=0.5, maximum-scale=2"/>
 	<meta name="author" content = "Jeremy Chinsen"/>
-	<link rel="stylesheet" href="stylesheet.css"/>
+	<link rel="stylesheet" href="generalStylesheet.css"/>
 </head>
 <body>
-	
-	<div id="screen">
-	
 		<div id="header">
 		<header>
 			<h1 id="titleText">RAGNAROK</h1>
@@ -21,18 +18,10 @@
 		
 		<div id="body">
 		<div id="menuContainer">
-			<a href="/storyPane.html">
-				<div class="menuButt">
-					New Game
-				</div>
-			</a>
+                    <input type="button" class = "menuButt" value = "New Game" onclick="parent.newGame('storyPane.html')">
 			</br>
 			</br>
-			<a href="">
-				<div class="menuButt">
-					Load Game
-				</div>
-			</a>
+                    <input type="button" class = "menuButt" value = "Load Game" onclick="parent.loadGame('storyPane.html')">
 		</div>
 		</div>
 		
@@ -52,6 +41,5 @@
 			</p>
 		</footer>
 		</div>
-	</div>
 </body>
 </html>

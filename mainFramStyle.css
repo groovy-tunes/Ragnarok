@@ -1,0 +1,15 @@
+#screen{	
+    width: 40%;
+    height: 600px;
+	
+    outline: none;
+    border-color: #00e64d;
+    box-shadow: 0 0 10px #1aff66;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+    background-color: black;
+}
