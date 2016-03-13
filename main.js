@@ -1,6 +1,6 @@
-//initially always a new game
+//initially always a new game and not in combat state
 var isNew = true;
-
+var combatState = false;
 /*
  * declaration of classes: 
  * Item, Character, EnemyChar, Player
@@ -25,11 +25,15 @@ var SQLInjector = new Item(15,"A dangerous tool that preys on vulnerabilities");
 var stuxnet = new Item(40,"Nothing is a secret");
 
 //declaration of character
-var Character = function(HP){
+var Character = function(HP,dex){
     this.HP = HP;
+    this.dex = dex;
 };
 Character.prototype.getHP = function(){
     return this.HP;
+};
+Character.prototype.getDexterity = function(){
+    return this.dex;
 };
 Character.prototype.reduceHP = function(redQuant){
     this.HP -= redQuant;
@@ -39,8 +43,8 @@ Character.prototype.addHP = function(addQuant){
 };
 
 //enemy class, child of character
-function EnemyChar(HP,name,move_1,move_2){
-    Character.call(this, HP);
+function EnemyChar(HP,name,dexterity,move_1,move_2){
+    Character.call(this, HP,dexterity);
     this.name = name;
     this.move_1 = move_1;
     this.move_2 = move_2;
@@ -54,9 +58,12 @@ EnemyChar.prototype.getAttack = function(moveKey){
         return this.move_2;
 };
 
+//test enemy
+var testEne = new EnemyChar(10,"FlexBeast", 5, 5, 10);
+
 //player class, child of character
-function Player(HP){
-    Character.call(this,HP);
+function Player(HP,dex){
+    Character.call(this,HP,dex);
     /*indexes that correspond to item:
     *0 - bitChainSword
     *1 - virusGren
@@ -73,14 +80,41 @@ Player.prototype.getInv = function(){
     return ("<br><br>>Inventory<br>---------------------<br>bitChainSword - " + this.inventory[0] + "<br>virusGren - " + this.inventory[1] + "<br>bitRifle - " + this.inventory[2] + "<br>bitMachineGun - " + this.inventory[3] + "<br>SQLInjector - " +this.inventory[4] + "<br>Stuxnet - "+ this.inventory[5]);
 };
 Player.prototype.runRNG = function(){
+    var enemyDex = testEne.getDex();
     runRoll = Math.floor(Math.random()*10 + 1);
-    console.log(runRoll);
-    if (runRoll>6)
+    if (runRoll>enemyDex)
         return true;
     else
         return false;
 };
-var mainPlayer = new Player(10);
+
+var mainPlayer = new Player(10,5);
+
+
+/*
+ * combat system
+ */
+
+// change this or not?
+var currentEnemy = testEne;
+var playerTurn =firstAttackDet();
+function firstAttackDet(){
+    if(currentEnemy.dexterity>5)
+        return false;
+    else
+        return true;
+}
+function hitConfirm(atkDex, defDex){
+    var hitRatio = Math.floor(atkDex/defDex);
+    hitRoll = Math.floor(Math.random()*10+1);
+    console.log(hitRoll);
+    console.log("def dex:" + defDex);
+    if ((hitRoll+hitRatio)>defDex){
+        return true;
+    }
+    else
+        return false;
+}
 
 
 /*

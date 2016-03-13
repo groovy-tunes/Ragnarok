@@ -47,6 +47,16 @@ function inputEntered(e, thisEle) {
         inputText = thisEle.value;
         inputText = inputText.toLowerCase();
         
+        if (inputText === "test"){
+            appendDisplay("<br><br>>testing");
+            console.log(parent.hitConfirm(parent.mainPlayer.getDexterity(),parent.testEne.getDexterity()));
+        }
+        
+        //combat state?
+        if(parent.combatState){
+            
+        }
+        
         //removes '>' character from command
         if (inputText.charAt(0) === ">") {
             inputText = inputText.substring(1);
