@@ -1,35 +1,32 @@
 //initially always a new game
 var isNew = true;
 
+/*
+ * declaration of classes: 
+ * Item, Character, EnemyChar, Player
+ */
 
-//declartion of item class
-var Item = function(dmg,quantity,uses){
+var Item = function(dmg,uses){
     this.dmg = dmg;
-    this.quantiy = quantity;
     this.uses = uses;
 };
-Item.protoype.helpInfo = function(){
+Item.prototype.getInfo = function(){
     return this.uses;
-};
-Item.protoype.addQuantity = function(addQuant){
-    this.quantity += addQuant;
-};
-Item.prototype.reduceQuantity = function(redQuant){
-    this.quantity -+ redQuant;
 };
 Item.prototype.upgrade = function(){
     this.dmg += 1;
 };
-var bitChainSword = Item (4,0,"A sword used to delete corrupted data");
-var virusGren = Item (10,0,"A grenade with highly destructive properties");
-var bitRifle = Item (6,0,"A rifle used to devastate indescriminately");
-var bitMachineGun = Item (8,0,"A gun that shoots rapidly");
-var SQLInjector = Item (15,0,"A dangerous tool that preys on vulnerabilities");
-var stuxnet = Item (40,0,"Nothing is a secret");
+
+var bitChainSword = new Item(4,"A sword used to delete corrupted data");
+var virusGren = new Item(10,"A grenade with highly destructive properties");
+var bitRifle = new Item(6,"A rifle used to devastate indescriminately");
+var bitMachineGun = new Item(8,"A gun that shoots rapidly");
+var SQLInjector = new Item(15,"A dangerous tool that preys on vulnerabilities");
+var stuxnet = new Item(40,"Nothing is a secret");
 
 //declaration of character
-var Character = function(){
-    this.HP = 0;
+var Character = function(HP){
+    this.HP = HP;
 };
 Character.prototype.getHP = function(){
     return this.HP;
@@ -41,30 +38,54 @@ Character.prototype.addHP = function(addQuant){
     this.HP += addQuant;
 };
 
-/*past inventory object, doubtful usefulness
-//declaration of inventory class
-var Inventory = function(BCS,VS,BR,BM,SI,SN){
-    //initializes inventorys to 0 capacity
-    this.bitChainSword = BCS;
-    this.virusGren = VS;
-    this.bitRifle = BR;
-    this.bitMachineGun = BM;
-    this.SQLInjector = SI;
-    this.stuxnet = SN;
+//enemy class, child of character
+function EnemyChar(HP,name,move_1,move_2){
+    Character.call(this, HP);
+    this.name = name;
+    this.move_1 = move_1;
+    this.move_2 = move_2;
+}
+EnemyChar.prototype = Object.create(Character.prototype);
+EnemyChar.prototype.constructor = Character;
+EnemyChar.prototype.getAttack = function(moveKey){
+    if(moveKey === 1)
+        return this.move_1;
+    else if(moveKey === 2)
+        return this.move_2;
 };
-Inventory.prototype.getInventory = function(){
-    return ("<br><br>>Retrieving inventory...<br>bitChainSword - " + this.bitChainSword + "<br>virusGren - " + this.virusGren + "<br>bitRifle - " + this.bitRifle + "<br>bitMachineGun - " + this.bitMachineGun + "<br>SQLInjector - " +this.SQLInjector + "<br>Stuxnet - " + this.stuxnet);
+
+//player class, child of character
+function Player(HP){
+    Character.call(this,HP);
+    /*indexes that correspond to item:
+    *0 - bitChainSword
+    *1 - virusGren
+    *2 - bitRifle
+    *3 - bitMachineGun
+    *4 - SQLInjector
+    *5 - stuxnet
+    */
+    this.inventory = [0,0,0,0,0,0]; 
+}
+Player.prototype = Object.create(Character.prototype);
+Player.prototype.constructor = Character;
+Player.prototype.getInv = function(){
+    return ("<br><br>>Inventory<br>---------------------<br>bitChainSword - " + this.inventory[0] + "<br>virusGren - " + this.inventory[1] + "<br>bitRifle - " + this.inventory[2] + "<br>bitMachineGun - " + this.inventory[3] + "<br>SQLInjector - " +this.inventory[4] + "<br>Stuxnet - "+ this.inventory[5]);
 };
-Inventory.prototype.reduceInv = function(itemKey, redValue){
-    this.itemKey -= redValue;
+Player.prototype.runRNG = function(){
+    runRoll = Math.floor(Math.random()*10 + 1);
+    console.log(runRoll);
+    if (runRoll>6)
+        return true;
+    else
+        return false;
 };
-Inventory.prototype.addInv = function(itemKey, addValue){
-    this.itemKey += addValue;
-};
-*/
+var mainPlayer = new Player(10);
 
 
-
+/*
+ *functions regarding saving and loading game
+ */
 
 //main js file that stores variables for future gameplay
 function saveGame(){
