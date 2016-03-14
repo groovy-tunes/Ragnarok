@@ -1,6 +1,6 @@
 //initially always a new game and not in combat state
 var isNew = true;
-var combatState = false;
+var combatState = true;
 /*
  * declaration of classes: 
  * Item, Character, EnemyChar, Player
@@ -57,6 +57,9 @@ EnemyChar.prototype.getAttack = function(moveKey){
     else if(moveKey === 2)
         return this.move_2;
 };
+EnemyChar.prototype.getName = function(){
+    return this.name;
+};
 
 //test enemy
 var testEne = new EnemyChar(10,"FlexBeast", 5, 5, 10);
@@ -72,7 +75,7 @@ function Player(HP,dex){
     *4 - SQLInjector
     *5 - stuxnet
     */
-    this.inventory = [0,0,0,0,0,0]; 
+    this.inventory = [0,1,2,3,4,5]; 
 }
 Player.prototype = Object.create(Character.prototype);
 Player.prototype.constructor = Character;
@@ -80,7 +83,7 @@ Player.prototype.getInv = function(){
     return ("<br><br>>Inventory<br>---------------------<br>bitChainSword - " + this.inventory[0] + "<br>virusGren - " + this.inventory[1] + "<br>bitRifle - " + this.inventory[2] + "<br>bitMachineGun - " + this.inventory[3] + "<br>SQLInjector - " +this.inventory[4] + "<br>Stuxnet - "+ this.inventory[5]);
 };
 Player.prototype.runRNG = function(){
-    var enemyDex = testEne.getDex();
+    var enemyDex = testEne.getDexterity();
     runRoll = Math.floor(Math.random()*10 + 1);
     if (runRoll>enemyDex)
         return true;
@@ -99,7 +102,7 @@ var mainPlayer = new Player(10,5);
 var currentEnemy = testEne;
 var playerTurn =firstAttackDet();
 function firstAttackDet(){
-    if(currentEnemy.dexterity>5)
+    if(currentEnemy.getDexterity()>5)
         return false;
     else
         return true;
@@ -107,13 +110,17 @@ function firstAttackDet(){
 function hitConfirm(atkDex, defDex){
     var hitRatio = Math.floor(atkDex/defDex);
     hitRoll = Math.floor(Math.random()*10+1);
-    console.log(hitRoll);
-    console.log("def dex:" + defDex);
     if ((hitRoll+hitRatio)>defDex){
         return true;
     }
     else
         return false;
+}
+function eneAtk(){
+    if(Math.random()>0.7)
+        return currentEnemy.getAttack(2);
+    else
+        return currentEnemy.getAttack(1);
 }
 
 
