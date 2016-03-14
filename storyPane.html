@@ -21,7 +21,12 @@
         </div>
         
         <div id="inputText">
-            <input type="text" value=">" onkeypress="inputEntered(event, this)"/>
+            <!--
+            onkeypress="inputEntered(event, this)"
+            ^used with the constant poll script
+            -->
+            <input type="text" value=">" id ="inputBox"/>
+            <input type="button" value="->" onclick = "inputEntered()"/>
         </div>
    
 </body>
