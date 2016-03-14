@@ -6,9 +6,10 @@ var combatState = false;
  * Item, Character, EnemyChar, Player
  */
 
-var Item = function(dmg,uses){
+var Item = function(dmg,uses,quantity){
     this.dmg = dmg;
     this.uses = uses;
+    this.quantity = quantity;
 };
 Item.prototype.getInfo = function(){
     return this.uses;
@@ -16,13 +17,22 @@ Item.prototype.getInfo = function(){
 Item.prototype.upgrade = function(){
     this.dmg += 1;
 };
+Item.prototype.reduceQuantity = function(redQuant){
+    this.quantity -= redQuant;
+};
+Item.prototype.addQuantity = function(addQuant){
+    this.quantity += addQuant;
+};
+Item.prototype.getDmg = function(){
+    return this.dmg;
+};
 
-var bitChainSword = new Item(4,"A sword used to delete corrupted data");
-var virusGren = new Item(10,"A grenade with highly destructive properties");
-var bitRifle = new Item(6,"A rifle used to devastate indescriminately");
-var bitMachineGun = new Item(8,"A gun that shoots rapidly");
-var SQLInjector = new Item(15,"A dangerous tool that preys on vulnerabilities");
-var stuxnet = new Item(40,"Nothing is a secret");
+var bitChainSword = new Item(4,"A sword used to delete corrupted data", 5);
+var virusGren = new Item(10,"A grenade with highly destructive properties", 10);
+var bitRifle = new Item(6,"A rifle used to devastate indescriminately", 10);
+var bitMachineGun = new Item(8,"A gun that shoots rapidly", 10);
+var SQLInjector = new Item(15,"A dangerous tool that preys on vulnerabilities", 10);
+var stuxnet = new Item(40,"Nothing is a secret", 10);
 
 //declaration of character
 var Character = function(HP,dex){
@@ -57,9 +67,12 @@ EnemyChar.prototype.getAttack = function(moveKey){
     else if(moveKey === 2)
         return this.move_2;
 };
+EnemyChar.prototype.getName = function(){
+    return this.name;
+};
 
 //test enemy
-var testEne = new EnemyChar(10,"FlexBeast", 5, 5, 10);
+var testEne = new EnemyChar(100,"FlexBeast", 4, 5, 10);
 
 //player class, child of character
 function Player(HP,dex){
@@ -72,15 +85,15 @@ function Player(HP,dex){
     *4 - SQLInjector
     *5 - stuxnet
     */
-    this.inventory = [0,0,0,0,0,0]; 
+    this.inventory = [bitChainSword,virusGren,bitRifle,bitMachineGun,SQLInjector,stuxnet]; 
 }
 Player.prototype = Object.create(Character.prototype);
 Player.prototype.constructor = Character;
 Player.prototype.getInv = function(){
-    return ("<br><br>>Inventory<br>---------------------<br>bitChainSword - " + this.inventory[0] + "<br>virusGren - " + this.inventory[1] + "<br>bitRifle - " + this.inventory[2] + "<br>bitMachineGun - " + this.inventory[3] + "<br>SQLInjector - " +this.inventory[4] + "<br>Stuxnet - "+ this.inventory[5]);
+    return ("<br><br>>Inventory<br>---------------------<br>bitChainSword - " + this.inventory[0].quantity + "<br>virusGren - " + this.inventory[1].quantity + "<br>bitRifle - " + this.inventory[2].quantity + "<br>bitMachineGun - " + this.inventory[3].quantity + "<br>SQLInjector - " +this.inventory[4].quantity + "<br>Stuxnet - "+ this.inventory[5].quantity);
 };
 Player.prototype.runRNG = function(){
-    var enemyDex = testEne.getDex();
+    var enemyDex = testEne.getDexterity();
     runRoll = Math.floor(Math.random()*10 + 1);
     if (runRoll>enemyDex)
         return true;
@@ -88,7 +101,7 @@ Player.prototype.runRNG = function(){
         return false;
 };
 
-var mainPlayer = new Player(10,5);
+var mainPlayer = new Player(100,6);
 
 
 /*
@@ -99,21 +112,25 @@ var mainPlayer = new Player(10,5);
 var currentEnemy = testEne;
 var playerTurn =firstAttackDet();
 function firstAttackDet(){
-    if(currentEnemy.dexterity>5)
+    if(currentEnemy.getDexterity()>5)
         return false;
     else
         return true;
 }
 function hitConfirm(atkDex, defDex){
-    var hitRatio = Math.floor(atkDex/defDex);
-    hitRoll = Math.floor(Math.random()*10+1);
-    console.log(hitRoll);
-    console.log("def dex:" + defDex);
+    var hitRatio = Math.ceil(atkDex/defDex);
+    var hitRoll = Math.floor(Math.random()*10+1);
     if ((hitRoll+hitRatio)>defDex){
         return true;
     }
     else
         return false;
+}
+function eneAtk(){
+    if(Math.random()>0.7)
+        return currentEnemy.getAttack(2);
+    else
+        return currentEnemy.getAttack(1);
 }
 
 
@@ -125,6 +142,7 @@ function hitConfirm(atkDex, defDex){
 function saveGame(){
     if (storageAvailable('localStorage')) {
 	storeObject("STD",document.getElementById("mainFrame").contentWindow.textDisplayed,false);
+        
     }
     else {
         //change this error 
