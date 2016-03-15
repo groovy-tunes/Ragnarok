@@ -1,6 +1,7 @@
 //initially always a new game and not in combat state
 var isNew = true;
-var combatState = false;
+var combatState = true;
+var worldCompleted = 0;
 /*
  * declaration of classes: 
  * Item, Character, EnemyChar, Player
@@ -132,6 +133,28 @@ function eneAtk(){
     else
         return currentEnemy.getAttack(1);
 }
+
+
+function itemGenerate(){
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
