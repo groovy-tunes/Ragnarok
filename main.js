@@ -271,36 +271,82 @@ function citySpawns() {
  *functions regarding saving and loading game
  */
 
-/*
+
 //main js file that stores variables for future gameplay
 function saveGame() {
     if (storageAvailable('localStorage')) {
-        storeObject("STD", document.getElementById("mainFrame").contentWindow.textDisplayed, false);
-
+    	var child = document.getElementById("mainFrame").contentWindow;
+        storeObject("SisNew", isNew, false);
+        storeObject("ScombatState", combatState, false);
+        storeObject("SworldCompleted", worldCompleted, false);
+        storeObject("ScurrentWorldComplete", currentWorldComplete, false);
+        storeObject("ScitiesCompleted", citiesCompleted, false);
+        storeObject("SbitChainSword", bitChainSword, true);
+        storeObject("SvirusGren", virusGren, true);
+        storeObject("SbitRifle", bitRifle, true);
+        storeObject("SbitMachineGun", bitMachineGun, true);
+        storeObject("SSQLInjector", SQLInjector, true);
+        storeObject("Sstuxnet", stuxnet, true);
+        storeObject("Shealth_1", health_1, true);
+        storeObject("Shealth_2", health_2, true);
+        storeObject("Shealth_3", health_3, true);
+        storeObject("SupgradeByte", upgradeByte, true);
+        storeObject("SspeedUP", speedUP, true);
+        storeObject("ShpUP", hpUP, true);
+        storeObject("SmainPlayer", mainPlayer, true);
+        storeObject("ScurrentEnemy", currentEnemy, true);
+        storeObject("StextCounter", child.textCounter, false);
+        storeObject("SuserTurn", child.userTurn, false);
+        storeObject("ScurrentCityIndex", child.currentCityIndex, false);
+        storeObject("Si", child.i, false);
+        storeObject("StextDisplayed",child.textDisplayed, false);
+        storeObject("StextInterval", child.textInterval, false);
     }
     else {
-        //change this error 
-        alert("WTF!@");
+        alert("Saving is not available");
     }
 }
-*/
+
 //changes the iframe to a newgame
 function newGame(url) {
     document.getElementById("mainFrame").src = url;
 }
-/*
-//changes iframe to past game and recalls past variables
+
+//changes iframe
 function loadGame(url) {
     isNew = false;
     document.getElementById("mainFrame").src = url;
 }
 //load data of variables from previous instance of game
 function loadData() {
-    var currentText = "" + readObject("STD");
-    currentText += "<br>>Successful load";
-    //alert(currentText);
-    // document.getElementById("mainFrame").getElementByID("textBox").innerHTML = "am dog";
-    document.getElementById("mainFrame").contentWindow.appendDisplay(currentText);
+	var child = document.getElementById("mainFrame").contentWindow;
+    isNew = readObject("SisNew");
+    combatState = readObject("ScombatState");
+    worldCompleted = readObject("SworldCompleted");
+    currentWorldComplete = readObject("ScurrentWorldComplete");
+    citiesCompleted = readObject("ScitiesCompleted");
+    currentCitySpawns = readObject("ScurrentCitySpawns");
+    child.textCounter = readObject("StextCounter");
+    child.userTurn = readObject("SuserTurn");
+    child.currentCityIndex = readObject("ScurrentCityIndex");
+    child.i = readObject("Si");
+    child.textDisplayed = readObject("StextDisplayed");
+    child.textInterval = readObject("StextInterval");
+    
+    bitChainSword = JSON.parse(readObject("SbitChainSword"));
+    virusGren = JSON.parse(readObject("SvirusGren"));
+    bitRifle = JSON.parse(readObject("SbitRifle"));
+    bitMachineGun = JSON.parse(readObject("SbitMachineGun"));
+    SQLInjector = JSON.parse(readObject("SSQLInjector"));
+    stuxnet = JSON.parse(readObject("Sstuxnet"));
+    health_1 = JSON.parse(readObject("Shealth_1"));
+    health_2 = JSON.parse(readObject("Shealth_2"));
+    health_3 = JSON.parse(readObject("Shealth_3"));
+    upgradeByte = JSON.parse(readObject("SupgradeByte"));
+    speedUP = JSON.parse(readObject("SspeedUP"));
+    hpUP = JSON.parse(readObject("ShpUP"));
+    
+    child.appendDisplay(child.textDisplayed);
 }
 //stores object and converts JSON to string
 function storeObject(key, val, isJson)
@@ -335,5 +381,3 @@ function storageAvailable(type) {
         return false;
     }
 }
-
-*/

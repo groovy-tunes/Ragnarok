@@ -293,7 +293,6 @@ function inputEntered(e, thisEle) {
                 parent.mainPlayer.increaseDex();
                 appendDisplay("<br>>Dexterity increased to " + parent.mainPlayer.getDexterity() +".");
             }
-            /*
             else if (inputText === "save") {
                 appendDisplay("<br>>Saving...");
                 parent.saveGame();
@@ -301,7 +300,6 @@ function inputEntered(e, thisEle) {
             else if (inputText === "load") {
                 parent.loadData();
             }
-            */
             else if (inputText === "help.bitchainsword") {
                 appendDisplay("<br>>" + parent.bitChainSword.getInfo());
             }
